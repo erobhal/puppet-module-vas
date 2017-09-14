@@ -7,7 +7,6 @@ else
 end
 
 gem 'facter', '>= 1.7.0', :require => false
-gem 'rspec-puppet', :require => false
 gem 'puppet-lint', '~> 2.0', :require => false
 gem 'puppet-lint-absolute_classname-check', :require => false
 gem 'puppet-lint-alias-check', :require => false
@@ -36,4 +35,5 @@ gem 'parallel_tests',         '<= 2.9.0', :require => false if RUBY_VERSION < '2
 gem 'public_suffix',          '<= 1.4.6', :require => false if RUBY_VERSION >= '1.9.3' && RUBY_VERSION < '2.0.0'
 gem 'public_suffix',          '<= 2.0.5', :require => false if RUBY_VERSION >= '2.0.0' && RUBY_VERSION < '2.1'
 gem 'public_suffix',          '>= 3.0.0', :require => false if RUBY_VERSION >= '2.1'
-gem 'rgen',                   '~> 0.6.6', :require => false if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
+gem 'rspec-puppet',           '<= 2.6.8', :require => false if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
+gem 'rspec-puppet',                       :require => false if RUBY_VERSION >= '1.9'
