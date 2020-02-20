@@ -1,37 +1,19 @@
-source ENV['GEM_SOURCE'] || 'https://rubygems.org'
+source "https://rubygems.org"
 
-if puppetversion = ENV['PUPPET_GEM_VERSION']
-  gem 'puppet', puppetversion, :require => false
+if ENV.key?('PUPPET_VERSION')
+    puppetversion = "~> #{ENV['PUPPET_VERSION']}"
 else
-  gem 'puppet', :require => false
+    puppetversion = ['>= 3.7.4']
 end
 
-gem 'facter', '>= 1.7.0'
-gem 'puppet-lint', '~> 2.0'
-gem 'puppet-lint-absolute_classname-check'
-gem 'puppet-lint-alias-check'
-gem 'puppet-lint-empty_string-check'
-gem 'puppet-lint-file_ensure-check'
-gem 'puppet-lint-file_source_rights-check'
-gem 'puppet-lint-leading_zero-check'
-gem 'puppet-lint-spaceship_operator_without_tag-check'
-gem 'puppet-lint-trailing_comma-check'
-gem 'puppet-lint-undef_in_function-check'
-gem 'puppet-lint-unquoted_string-check'
-gem 'puppet-lint-variable_contains_upcase'
-gem 'rspec-puppet', '~> 2.5.0'
-gem 'rubygems-update', '<= 2.7.10'
+gem 'puppet', puppetversion
+gem 'puppet-lint', '>=0.3.2'
+gem 'puppetlabs_spec_helper', '>=0.2.0'
+gem 'rake', '>=0.9.2.2'
+gem 'librarian-puppet', '>=1.0.0'
+gem 'public_suffix', '<=2.0.5' if RUBY_VERSION >= '2.0.0'
+gem 'metadata-json-lint' if RUBY_VERSION >= '2.0.0'
 
-gem 'json',                   '<= 1.8'   if RUBY_VERSION < '2.0.0'
-gem 'json_pure',              '<= 2.0.1' if RUBY_VERSION < '2.0.0'
-gem 'metadata-json-lint',     '0.0.11'   if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
-#gem 'metadata-json-lint',     '1.0.0'    if RUBY_VERSION >= '1.9' && RUBY_VERSION < '2.0'
-gem 'metadata-json-lint',     '1.1.0'    if RUBY_VERSION >= '1.9' && RUBY_VERSION < '2.0'
-gem 'metadata-json-lint'                 if RUBY_VERSION >= '2.0'
-gem 'parallel_tests',         '<= 2.9.0' if RUBY_VERSION > '1.9.3'
-gem 'puppetlabs_spec_helper', '2.0.2'    if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
-gem 'puppetlabs_spec_helper', '>= 2.0.0' if RUBY_VERSION >= '1.9'
-gem 'rake',                   '~> 10.0'  if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
-gem 'rake',                   '< 12.3'   if RUBY_VERSION >= '1.9' && RUBY_VERSION < '2.0'
-gem 'rake'                               if RUBY_VERSION >= '2.0'
-gem 'rspec',                  '~> 2.0'   if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
+if RUBY_VERSION.to_i < 2.0
+  gem 'json_pure', '< 2.0.2'
+end
